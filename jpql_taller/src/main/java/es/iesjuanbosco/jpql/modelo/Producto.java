@@ -1,5 +1,15 @@
 package es.iesjuanbosco.jpql.modelo;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+
 @Entity
 public class Producto {
  @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -7,20 +17,8 @@ public class Producto {
  private String nombre;
  private Double precio;
  private Integer stock;
+
  @ManyToOne(fetch=FetchType.LAZY, optional=false)
  private Categoria categoria;
 
- protected Producto() {}public Producto(String nombre,Double precio,Integer stock,Categoria categoria){this.nombre=nombre;this.precio=precio;this.stock=stock;this.categoria=categoria;}
-
-    public Long getId(){return id;}
-    public String getNombre(){return nombre;}
-    public Double getPrecio(){return precio;}
-    public Integer getStock(){return stock;}
-    public Categoria getCategoria(){return categoria;}
-
-
-     @Override public String toString(){
-
-     return "Producto{"+id+", "+nombre+", "+precio+", stock="+stock+"}";
-     }
 }

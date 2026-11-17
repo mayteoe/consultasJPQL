@@ -1,22 +1,31 @@
 package es.iesjuanbosco.jpql.modelo;
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.*;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+
 @Entity
 public class Categoria {
  @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
  private Long id;
  private String nombre;
  @OneToMany(mappedBy="categoria", fetch=FetchType.LAZY)
+ @Builder.Default
+ @ToString.Exclude
  private List<Producto> productos=new ArrayList<>();
 
- protected Categoria() {}
-    public Categoria(String nombre){this.nombre=nombre;}
+ //Métodos helper para mantener la relación bidireccional
+    public void agregarProducto(Producto producto){
+        productos.add(producto);
+        producto.setCategoria(this);
+    }
 
-    public Long getId(){return id;}
-    public String getNombre(){return nombre;}
-    public List<Producto> getProductos(){return productos;}
-
-    @Override
-    public String toString(){
-     return "Categoria{"+id+", "+nombre+"}";}
+    public void eliminarProducto(Producto producto){
+        productos.remove(producto);
+        producto.setCategoria(null);
+    }
 }

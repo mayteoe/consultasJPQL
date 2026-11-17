@@ -1,24 +1,44 @@
 package es.iesjuanbosco.jpql.modelo;
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDate;
 import java.util.*;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+
 @Entity
 public class Pedido {
- @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
- private Long id;
- private LocalDate fecha;
- private Double total;
- @Enumerated(EnumType.STRING) private EstadoPedido estado;
- @ManyToOne(fetch=FetchType.LAZY, optional=false)
- private Cliente cliente;
- @OneToMany(mappedBy="pedido", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
- private List<LineaPedido> lineas=new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private LocalDate fecha;
+    private Double total;
+    @Enumerated(EnumType.STRING)
+    private EstadoPedido estado;
 
- protected Pedido() {}
-    public Pedido(LocalDate fecha,Double total,EstadoPedido estado,Cliente cliente){this.fecha=fecha;this.total=total;this.estado=estado;this.cliente=cliente;}
-    public void agregarLinea(Producto producto,int cantidad){
-     lineas.add(new LineaPedido(this,producto,cantidad,producto.getPrecio()));}
-    public Long getId(){return id;} public LocalDate getFecha(){return fecha;} public Double getTotal(){return total;} public EstadoPedido getEstado(){return estado;} public Cliente getCliente(){return cliente;} public List<LineaPedido> getLineas(){return lineas;}
- @Override public String toString(){
-     return "Pedido{"+id+", "+fecha+", "+total+", "+estado+"}";}
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LineaPedido> lineas = new ArrayList<>();
+
+    //Métodos helper para mantener la relación bidireccional
+    public void agregarLinea(LineaPedido linea) {
+        lineas.add(linea);
+        linea.setPedido(this);
+    }
+
+    public void eliminarLinea(LineaPedido linea) {
+        lineas.remove(linea);
+        linea.setPedido(null);
+    }
 }
+
+
