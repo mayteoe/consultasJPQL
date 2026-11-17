@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.1">
+  <persistence-unit name="tallerJPQL" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>es.iesjuanbosco.jpql.modelo.Cliente</class>
+    <class>es.iesjuanbosco.jpql.modelo.Categoria</class>
+    <class>es.iesjuanbosco.jpql.modelo.Producto</class>
+    <class>es.iesjuanbosco.jpql.modelo.Pedido</class>
+    <class>es.iesjuanbosco.jpql.modelo.LineaPedido</class>
+    <properties>
+      <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:./datos/tienda;AUTO_SERVER=TRUE"/>
+      <property name="jakarta.persistence.jdbc.user" value="sa"/>
+      <property name="jakarta.persistence.jdbc.password" value=""/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+    </properties>
+  </persistence-unit>
+</persistence>
