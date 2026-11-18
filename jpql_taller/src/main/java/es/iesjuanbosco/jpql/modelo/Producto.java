@@ -16,7 +16,7 @@ public class Producto {
  private Long id;
  @Column(nullable = false, length = 120)
  private String nombre;
- @Column(nullable = false, precision = 10, scale = 2)
+ @Column(nullable = false)
  private Double precio;
  @Column(nullable = false)
  private Integer stock;
