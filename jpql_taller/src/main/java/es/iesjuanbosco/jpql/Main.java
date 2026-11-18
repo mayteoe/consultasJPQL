@@ -7,8 +7,7 @@ import es.iesjuanbosco.jpql.modelo.Producto;
 public class Main {
     public static void main(String[] args) {
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("tallerJPQL")) {
-            EntityManager em = emf.createEntityManager();
-            try {
+            try (EntityManager em = emf.createEntityManager()) {
                 DatosIniciales.cargarSiVacia(em);
                 ConsultasEjemplo consultas = new ConsultasEjemplo(em);
                 System.out.println("\n=== PRODUCTOS CON PRECIO > 100 ===");
@@ -29,9 +28,6 @@ public class Main {
                 consultas.precioSuperiorMedia().forEach(System.out::println);
 
                 System.out.println("\nAbre MisConsultas.java para realizar los ejercicios.");
-               }
-                finally {
-                em.close();
             }
         }
     }
