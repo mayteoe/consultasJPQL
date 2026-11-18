@@ -10,12 +10,12 @@ public class Main {
             try (EntityManager em = emf.createEntityManager()) {
                 DatosIniciales.cargarSiVacia(em);
                 ConsultasEjemplo consultas = new ConsultasEjemplo(em);
-                System.out.println("\n=== PRODUCTOS CON PRECIO > 100 ===");
+                System.out.println("\n---PRODUCTOS CUYO PRECIO > 100 ---");
                 for (Producto producto : consultas.productosCaros(100)) {
                     System.out.println(producto);
                 }
 
-                System.out.println("\n=== CLIENTES CON PEDIDOS ===");
+                System.out.println("\n---CLIENTES CON PEDIDOS ---");
                 for (Cliente cliente : consultas.clientesConPedidos()) {
                     System.out.println(cliente);
                 }
@@ -24,7 +24,7 @@ public class Main {
                 for (Object[] fila : consultas.numeroPedidosPorCliente())
                     System.out.println(fila[0] + ": " + fila[1]);
 
-                System.out.println("\n=== PRODUCTOS POR ENCIMA DE LA MEDIA ===");
+                System.out.println("\n--- PRODUCTOS POR ENCIMA DE LA MEDIA ---");
                 consultas.precioSuperiorMedia().forEach(System.out::println);
 
                 System.out.println("\nAbre MisConsultas.java para realizar los ejercicios.");
