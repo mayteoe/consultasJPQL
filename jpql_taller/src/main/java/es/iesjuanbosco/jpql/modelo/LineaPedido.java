@@ -22,7 +22,9 @@ public class LineaPedido {
  @JoinColumn(name = "producto_id", nullable = false)
  private Producto producto;
 
+ @Column(nullable = false)
  private Integer cantidad;
+ @Column(nullable = false, precision = 10, scale = 2)
  private Double precioUnitario;
 
 }

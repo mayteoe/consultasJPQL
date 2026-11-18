@@ -12,6 +12,7 @@ import java.util.*;
 public class Categoria {
  @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
  private Long id;
+ @Column(nullable = false, length = 80, unique = true)
  private String nombre;
  @OneToMany(mappedBy="categoria", fetch=FetchType.LAZY)
  @Builder.Default

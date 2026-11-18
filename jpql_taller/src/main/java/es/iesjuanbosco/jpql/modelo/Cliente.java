@@ -12,8 +12,11 @@ import java.util.*;
 public class Cliente {
  @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
  private Long id;
+ @Column(nullable = false, length = 100)
  private String nombre;
+ @Column(nullable = false, length = 200)
  private String direccion;
+ @Column(length = 150, unique = true)
  private String email;
 
  @OneToMany(mappedBy="cliente", fetch=FetchType.LAZY)
@@ -32,4 +35,3 @@ public class Cliente {
         pedido.setCliente(null);
     }
 }
-
