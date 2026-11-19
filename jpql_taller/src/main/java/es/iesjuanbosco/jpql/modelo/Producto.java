@@ -11,6 +11,14 @@ import lombok.NoArgsConstructor;
 @Builder
 
 @Entity
+@Table(name="productos")
+@NamedQuery(name="Producto.porNombre",
+        query="SELECT p FROM Producto p WHERE p.nombre LIKE :nombre")
+@NamedQuery(
+        name = "Producto.caros",
+        query = "SELECT p FROM Producto p WHERE p.precio > :minimo"
+)
+
 public class Producto {
  @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
  private Long id;

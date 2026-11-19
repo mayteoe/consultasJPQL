@@ -19,7 +19,8 @@ public class LineaPedido {
  private Pedido pedido;
 
  @ManyToOne(fetch=FetchType.LAZY,optional=false)
- @JoinColumn(name = "producto_id", nullable = false)
+ @JoinColumn(name = "producto_id", nullable = false,
+         foreignKey = @ForeignKey(name = "FK_LINEAPEDIDO_PRODUCTO"))
  private Producto producto;
 
  @Column(nullable = false)

@@ -32,22 +32,27 @@ public final class DatosIniciales {
        Cliente ana=Cliente.builder()
                .nombre("Ana López")
                .direccion("Madrid")
+               .localidad("Madrid")
                .email("ana@ejemplo.test").build();
         Cliente luis=Cliente.builder()
                 .nombre("Luis Pérez")
-                .direccion("Toledo")
+                .direccion("Albacete")
+                .localidad("Albacete")
                 .email("luis@ejemplo.test").build();
         Cliente maria=Cliente.builder()
                 .nombre("María Ruiz")
-                .direccion("Madrid")
+                .direccion("Valencia")
+                .localidad("Valencia")
                 .email("maria@ejemplo.test").build();
         Cliente carlos=Cliente.builder()
                 .nombre("Carlos Díaz")
-                .direccion("Alcázar de San Juan")
+                .direccion("Alicante")
+                .localidad("Alicante")
                 .email(null).build();
         Cliente eva=Cliente.builder()
                 .nombre("Eva Martín")
-                .direccion("Toledo")
+                .direccion("Barcelona")
+                .localidad("Barcelona")
                 .email("eva@ejemplo.test").build();
 
        for(Cliente c:List.of(ana,luis,maria,carlos,eva)) em.persist(c);

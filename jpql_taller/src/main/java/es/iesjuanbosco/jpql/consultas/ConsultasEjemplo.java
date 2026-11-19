@@ -8,10 +8,7 @@ public class ConsultasEjemplo {
      this.em=em;
  }
  public List<Producto> productosCaros(double minimo){
-     return em.createQuery("""
-             SELECT p FROM Producto p WHERE p.precio > :minimo
-              ORDER BY p.precio DESC
-             """,Producto.class)
+     return em.createNamedQuery("Producto.caros",Producto.class)
               .setParameter("minimo",minimo)
               .getResultList();}
  public List<Cliente> clientesConPedidos(){

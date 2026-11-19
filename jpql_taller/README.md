@@ -21,11 +21,12 @@ Proyecto Maven de **Java 17**, **Jakarta Persistence 3.1**, **Hibernate ORM 6.6*
 - `resources/META-INF/persistence.xml`: conexión, proveedor JPA y SQL visible.
 
 ## Datos de prueba
-5 clientes (Eva no tiene pedidos), 3 categorías, 8 productos y 8 pedidos. Informática tiene 6 productos; Ana tiene 4 pedidos. Un pedido cancelado está relacionado con líneas de pedido: **no ejecutes DELETE masivo de Pedido sin revisar las claves foráneas**.
+5 clientes (Eva no tiene pedidos), de Madrid, Albacete, Valencia, Alicante y Barcelona; 3 categorías, 8 productos y 8 pedidos. Informática tiene 6 productos; Ana tiene 4 pedidos. Un pedido cancelado está relacionado con líneas de pedido: **no ejecutes DELETE masivo de Pedido sin revisar las claves foráneas**.
 
 ## Precauciones
 - `hibernate.hbm2ddl.auto=update` se utiliza **solo para prácticas**, no para producción.
 - La BD persiste entre ejecuciones. Para empezar de cero, detén el programa y elimina la carpeta `datos/`.
+- Los datos iniciales solo se cargan si no hay clientes; los cambios en ellos no modifican automáticamente una base de datos existente.
 - No ejecutes UPDATE/DELETE de los ejercicios sobre datos que quieras conservar. Haz copia o reinicia la BD.
 - `Double` se utiliza para simplificar la enseñanza; para importes monetarios reales conviene `BigDecimal`.
 - `JOIN FETCH` de una colección no debe combinarse ingenuamente con paginación.
